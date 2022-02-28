@@ -15,10 +15,9 @@
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="80"/>
             <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Column="0"
@@ -42,21 +41,43 @@
                 Content="Generate Keys"
                 Height="25"
                 Width="100"
+                HorizontalAlignment="Right"
+                IsEnabled="True"
                 Style="{StaticResource ButtonStyle}"/>
 
-        <Button Grid.Column="0"
-                Grid.Row="2"
-                Content="Copy to Clipboard"
-                Height="25"
-                Width="150"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Style="{StaticResource ButtonStyle}"/>
+        <Border Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Padding="5"
+                Background="#C1B3C6" CornerRadius="10">
 
-        <TextBlock Grid.Row="3"
-                   Grid.ColumnSpan="3"
-                   Background="White"
-                   Text="Encryption Done"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="1"
+                        Grid.Row="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Height="25"
+                        Width="150"
+                        Content="Copy to Clipboard"
+                        Style="{StaticResource ButtonStyle}"/>
+
+
+                <TextBlock Grid.ColumnSpan="2"
+                           Grid.Row="1"
+                           Background="#C1B3C6"
+                           TextWrapping="Wrap"
+                           Text="Encryption Done"/>
+
+            </Grid>
+        </Border>
 
     </Grid>
 
