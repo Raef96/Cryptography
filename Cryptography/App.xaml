@@ -13,12 +13,18 @@
                 <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
+            <Image x:Key="ContentCopy" Source="/Cryptography;component/Static files/content_copy.png"/>
+
             <DataTemplate DataType="{x:Type viewModel:KeysViewModel}">
                 <view:KeysView/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:EncryptionViewModel}">
                 <view:EncryptionView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ContentCopyViewModel}">
+                <view:ContentCopyView/>
             </DataTemplate>
 
         </ResourceDictionary>

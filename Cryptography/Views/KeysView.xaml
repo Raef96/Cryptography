@@ -44,41 +44,9 @@
                 HorizontalAlignment="Right"
                 IsEnabled="True"
                 Style="{StaticResource ButtonStyle}"/>
-
-        <Border Grid.Row="2"
-                Grid.ColumnSpan="3"
-                Padding="5"
-                Background="#C1B3C6" CornerRadius="10">
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="9*"/>
-                </Grid.RowDefinitions>
-
-                <Button Grid.Column="1"
-                        Grid.Row="0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Height="25"
-                        Width="150"
-                        Content="Copy to Clipboard"
-                        Style="{StaticResource ButtonStyle}"/>
-
-
-                <TextBlock Grid.ColumnSpan="2"
-                           Grid.Row="1"
-                           Background="#C1B3C6"
-                           TextWrapping="Wrap"
-                           Text="Encryption Done"/>
-
-            </Grid>
-        </Border>
-
+        
+        <local:ContentCopyView Grid.Row="2"
+                               Grid.ColumnSpan="2"/>
     </Grid>
 
 
