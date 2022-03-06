@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Cryptography
+namespace Cryptography.App
 {
     public partial class MainWindow : Window
     {

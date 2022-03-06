@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Cryptography.ViewModels
+namespace Cryptography.App.ViewModels
 {
     internal class RelayCommand : ICommand
     {

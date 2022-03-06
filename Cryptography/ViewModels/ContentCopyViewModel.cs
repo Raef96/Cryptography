@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace Cryptography.ViewModels
+namespace Cryptography.App.ViewModels
 {
     internal class ContentCopyViewModel : BaseViewModel
     {

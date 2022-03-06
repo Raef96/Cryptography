@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using static Cryptography.ViewModels.KeysViewModel;
+using static Cryptography.App.ViewModels.KeysViewModel;
 
-namespace Cryptography.Views
+namespace Cryptography.App.Views
 {
     /// <summary>
     /// Interaction logic for KeysView.xaml

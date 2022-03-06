@@ -1,8 +1,8 @@
 ﻿using System.Windows.Input;
 using System.Collections.Generic;
-using Cryptography.Models;
+using Cryptography.App.Models;
 
-namespace Cryptography.ViewModels
+namespace Cryptography.App.ViewModels
 {
     internal class KeysViewModel : BaseViewModel
     {

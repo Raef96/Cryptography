@@ -1,4 +1,4 @@
-﻿namespace Cryptography.Models
+﻿namespace Cryptography.App.Models
 {
     internal class EncryptionType
     {

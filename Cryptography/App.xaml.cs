@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Cryptography
+namespace Cryptography.App
 {
     /// <summary>
     /// Interaction logic for App.xaml

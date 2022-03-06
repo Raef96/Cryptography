@@ -1,9 +1,9 @@
-﻿<Application x:Class="Cryptography.App"
+﻿<Application x:Class="Cryptography.App.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Cryptography"
-             xmlns:viewModel="clr-namespace:Cryptography.ViewModels"
-             xmlns:view="clr-namespace:Cryptography.Views"
+             xmlns:local="clr-namespace:Cryptography.App"
+             xmlns:viewModel="clr-namespace:Cryptography.App.ViewModels"
+             xmlns:view="clr-namespace:Cryptography.App.Views"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -13,7 +13,7 @@
                 <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <Image x:Key="ContentCopy" Source="/Cryptography;component/Static files/content_copy.png"/>
+            <Image x:Key="ContentCopy" Source="/Cryptography.App;component/Static files/content_copy.png"/>
 
             <DataTemplate DataType="{x:Type viewModel:KeysViewModel}">
                 <view:KeysView/>

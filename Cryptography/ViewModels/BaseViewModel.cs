@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Cryptography.ViewModels
+namespace Cryptography.App.ViewModels
 {
     internal class BaseViewModel : INotifyPropertyChanged
     {

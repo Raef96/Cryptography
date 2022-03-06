@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Cryptography.Views
+namespace Cryptography.App.Views
 {
     /// <summary>
     /// Interaction logic for EncryptionView.xaml
