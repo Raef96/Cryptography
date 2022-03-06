@@ -43,7 +43,7 @@
                              FontSize="14"
                              Style="{StaticResource MenuButtonStyle}"
                              IsChecked="True"
-                             Command="{Binding KeysViewCommand}"/>
+                             Command="{Binding KeysViewCommand }"/>
 
 
                 <RadioButton Content="Encryption"
@@ -55,9 +55,11 @@
             </StackPanel>
 
             <ContentControl Grid.Column="1"
-                                Grid.Row="1"
-                                Margin="10"
-                            Content="{Binding CurrentView}"/>
+                            Grid.Row="1"
+                            Margin="10"
+                            Content="{Binding CurrentView,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Mode=OneWay}"/>
 
         </Grid>
     </Border>

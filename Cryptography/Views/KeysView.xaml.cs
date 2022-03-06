@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using static Cryptography.ViewModels.KeysViewModel;
 
 namespace Cryptography.Views
 {
@@ -10,6 +11,7 @@ namespace Cryptography.Views
         public KeysView()
         {
             InitializeComponent();
+            Combo.ItemsSource = EncryptionTypeLabels;
         }
     }
 }

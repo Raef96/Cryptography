@@ -5,25 +5,26 @@ namespace Cryptography.ViewModels
 {
     internal class RelayCommand : ICommand
     {
-        private readonly Action<object> _execute;
-        private readonly Func<object, bool> _canExecute;
+        private readonly Action _execute;
+        private readonly Func<bool> _canExecute;
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public RelayCommand(Action execute, Func<bool> canExecute)
         {
             _execute = execute;
             _canExecute = canExecute;
         }
-
+        
         public event EventHandler? CanExecuteChanged;
 
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
-            return _canExecute == null || _canExecute(parameter);
+            if (_canExecute == null) return false;
+            return _canExecute();
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
-            _execute(parameter);
+            _execute();
         }
     }
 }

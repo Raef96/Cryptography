@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Cryptography.Views"
+             xmlns:viewModels="clr-namespace:Cryptography.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800">
+
+
+    <UserControl.DataContext>
+        <viewModels:KeysViewModel/>
+    </UserControl.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,11 +37,12 @@
 
         <ComboBox Grid.Column="0"
                   Grid.Row="1"
+                  x:Name="Combo"
                   Height="30"
-                  Style="{StaticResource ComboBox}">
-            <ComboBoxItem Name="Item1">Asymetric Encryption</ComboBoxItem>
-            <ComboBoxItem Name="Item2">Symetric Encryption</ComboBoxItem>
-        </ComboBox>
+                  Style="{StaticResource ComboBox}"
+                  SelectedItem="{Binding SelectedEncryptionType,
+                                 UpdateSourceTrigger=PropertyChanged,
+                                 Mode=TwoWay}"/>
 
         <Button Grid.Column="1"
                 Grid.Row="1"
@@ -42,12 +50,14 @@
                 Height="25"
                 Width="100"
                 HorizontalAlignment="Right"
-                IsEnabled="True"
-                Style="{StaticResource ButtonStyle}"/>
-        
+                IsEnabled="{Binding GenerateKeysButtonIsEnable,
+                UpdateSourceTrigger=PropertyChanged,
+                Mode=TwoWay}"
+                Style="{StaticResource ButtonStyle}"
+                Command="{Binding Generate}"/>
+
         <local:ContentCopyView Grid.Row="2"
-                               Grid.ColumnSpan="2"/>
+                               Grid.ColumnSpan="2"
+                               DataContext="{Binding ContentCopyVM}"/>
     </Grid>
-
-
 </UserControl>
