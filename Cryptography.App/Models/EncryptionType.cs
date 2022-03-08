@@ -2,13 +2,13 @@
 {
     internal class EncryptionType
     {
-        public const string AsymetricEncryption = "Asymetric Encryption";
-        public const string SymetricEncryption = "Symetric Encryption";
+        public const string AsymmetricEncryption = "Asymmetric Encryption";
+        public const string SymmetricEncryption = "Symmetric Encryption";
 
         public enum EncryptionOption
         {
-            AsymetricEncryption,
-            SymetricEncription,
+            AsymmetricEncryption,
+            SymmetricEncription,
             None
         }
         
@@ -16,10 +16,10 @@
         {
             switch (label)
             {
-                case AsymetricEncryption:
-                    return EncryptionOption.AsymetricEncryption;
-                case SymetricEncryption:
-                    return EncryptionOption.SymetricEncription;
+                case AsymmetricEncryption:
+                    return EncryptionOption.AsymmetricEncryption;
+                case SymmetricEncryption:
+                    return EncryptionOption.SymmetricEncription;
                 default:
                     return EncryptionOption.None;
             }
