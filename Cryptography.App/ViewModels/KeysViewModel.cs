@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using System.Collections.Generic;
 using Cryptography.App.Models;
+using Cryptography.Core.Services;
 
 namespace Cryptography.App.ViewModels
 {
@@ -8,8 +9,8 @@ namespace Cryptography.App.ViewModels
     {
         public static List<string> EncryptionTypeLabels { get; } = new List<string>()
         {
-            EncryptionType.AsymetricEncryption,
-            EncryptionType.SymetricEncryption
+            EncryptionType.AsymmetricEncryption,
+            EncryptionType.SymmetricEncryption
         };
 
         #region Files
@@ -78,7 +79,7 @@ namespace Cryptography.App.ViewModels
         #region Methods
         public void GenerateKeys()
         {
-            GeneratedKeys = "Keys are generated successfully";
+            GeneratedKeys = EncryptionService.CreateSymmetricKey().ToString();
         }
         #endregion
     }
