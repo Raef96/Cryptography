@@ -11,7 +11,7 @@
     <UserControl.DataContext>
         <viewModels:ContentCopyViewModel/>
     </UserControl.DataContext>
-    
+
     <Border Background="#C1B3C6"
             CornerRadius="10">
         <Grid>
@@ -28,7 +28,7 @@
                     Background="Transparent"
                     Foreground="Black"
                     BorderThickness="0"
-                    IsEnabled="{Binding CopyButtonIsEnabled}"
+                    IsEnabled="{Binding CanCopy}"
                     Style="{StaticResource ButtonStyle}"
                     Command="{Binding CopyToClipboardCommand}">
                 <StackPanel Orientation="Horizontal">
@@ -37,13 +37,19 @@
                 </StackPanel>
             </Button>
 
-            <TextBlock x:Name="textContent"
-                       Grid.Row="1"
-                       TextWrapping="Wrap"
-                       Margin="10,0,0,0"
-                       Text="{Binding TextContent,
+            <TextBox x:Name="textContent"
+                     Grid.Row="1"
+                     BorderThickness="0"
+                     TextWrapping="Wrap"
+                     Margin="10,0,0,0"
+                     Background="Transparent"
+                     IsReadOnly="True"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     Text="{Binding TextContent,
                               UpdateSourceTrigger=PropertyChanged,
                               Mode=TwoWay}"/>
+
+
         </Grid>
     </Border>
 

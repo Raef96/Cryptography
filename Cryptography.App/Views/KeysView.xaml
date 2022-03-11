@@ -50,9 +50,7 @@
                 Height="25"
                 Width="100"
                 HorizontalAlignment="Right"
-                IsEnabled="{Binding GenerateKeysButtonIsEnable,
-                UpdateSourceTrigger=PropertyChanged,
-                Mode=TwoWay}"
+                IsEnabled="{Binding CanGenerateKeys}"
                 Style="{StaticResource ButtonStyle}"
                 Command="{Binding Generate}"/>
 
