@@ -5,6 +5,23 @@ namespace Cryptography.Core.Services
 {
     internal class EncryptionService
     {
+
+        public static string Encrypt(string plainText, EncryptionKeys encryptionKeys)
+        {
+            
+            if (encryptionKeys.SymmetricKey is not null)
+            {
+                return EncryptAES(plainText, encryptionKeys.SymmetricKey);
+            }
+            if (encryptionKeys.AsymmetricKey is not null)
+            {
+                return EncryptRSA(plainText, encryptionKeys.AsymmetricKey);
+            }
+
+            throw new CryptographicException("Unknows encryption keys");
+        }
+
+        #region AES
         public static SymmetricKeyAES CreateSymmetricKey()
         {
             var aes = Aes.Create();
@@ -18,24 +35,6 @@ namespace Cryptography.Core.Services
                 IV = Convert.ToBase64String(aes.IV)
             };
         }
-
-        public static AsymmetricKeyRSA CreateAsymmetricKey()
-        {
-            using var rsa = new RSACryptoServiceProvider(2048);
-            try
-            {
-                return new AsymmetricKeyRSA
-                {
-                    PublicKey = rsa.ToXmlString(false),
-                    PrivateKey = rsa.ToXmlString(true)
-                };
-            }
-            finally
-            {
-                rsa.PersistKeyInCsp = false; // keys should not be persisted on the computer
-            }
-        }
-
         public static string EncryptAES(string plainText, SymmetricKeyAES symmetricKeyAES)
         {
             if (string.IsNullOrEmpty(plainText))
@@ -101,5 +100,30 @@ namespace Cryptography.Core.Services
 
             return decryptedText;
         }
+        #endregion
+
+        #region RSA
+        public static AsymmetricKeyRSA CreateAsymmetricKey()
+        {
+            using var rsa = new RSACryptoServiceProvider(2048);
+            try
+            {
+                return new AsymmetricKeyRSA
+                {
+                    PublicKey = rsa.ToXmlString(false),
+                    PrivateKey = rsa.ToXmlString(true)
+                };
+            }
+            finally
+            {
+                rsa.PersistKeyInCsp = false; // keys should not be persisted on the computer
+            }
+        }
+        public static string EncryptRSA(string plainText, AsymmetricKeyRSA asymmetricKeyRSA)
+        {
+            // TODO
+            return string.Empty;
+        }
+        #endregion
     }
 }
