@@ -6,12 +6,10 @@ namespace Cryptography.App.ViewModels
     internal class ContentCopyViewModel : BaseViewModel
     {
         private string _textContent;
-        private bool _copyButtonIsEnabled;
 
         public ContentCopyViewModel()
         {
             _textContent = string.Empty;
-            _copyButtonIsEnabled = false;
 
             CopyToClipboardCommand = new RelayCommand(CopyToClipboard, () => true);
         }
@@ -25,23 +23,12 @@ namespace Cryptography.App.ViewModels
                 if (_textContent != value)
                 {
                     _textContent = value;
-                    CopyButtonIsEnabled = true;
+                    OnPropertyChanged(nameof(CanCopy));
                     OnPropertyChanged(nameof(TextContent));
                 }
             }
         }
-        public bool CopyButtonIsEnabled
-        {
-            get { return _copyButtonIsEnabled; }
-            set
-            {
-                if (_copyButtonIsEnabled != value)
-                {
-                    _copyButtonIsEnabled = value;
-                    OnPropertyChanged(nameof(CopyButtonIsEnabled));
-                }
-            }
-        }
+        public bool CanCopy => ! string.IsNullOrEmpty(TextContent);
         #endregion
 
         public ICommand CopyToClipboardCommand { get; set; }
