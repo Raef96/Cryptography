@@ -1,4 +1,7 @@
-﻿using System.Windows.Input;
+﻿using Cryptography.Core.Models;
+using Cryptography.Core.Services;
+
+using System.Windows.Input;
 
 namespace Cryptography.App.ViewModels
 {
@@ -63,8 +66,8 @@ namespace Cryptography.App.ViewModels
 
         public void EncryptText()
         {
-            // TODO
-            EncryptedText = KeysForEncryption;
+            var keys = new EncryptionKeys(KeysForEncryption);
+            EncryptedText  = EncryptionService.Encrypt(TextToEncrypt, keys);            
         }
 
     }

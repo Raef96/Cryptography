@@ -16,14 +16,12 @@ namespace Cryptography.App.ViewModels
         #region Files
         private string _encryptionType;
         private string _generatedKeys;
-        private bool _generateKeysButtonIsEnable;
         #endregion
 
         public KeysViewModel()
         {
             _encryptionType = string.Empty;
             _generatedKeys = string.Empty;
-            _generateKeysButtonIsEnable = false;
 
             ContentCopyVM = new ContentCopyViewModel();
 
@@ -39,7 +37,7 @@ namespace Cryptography.App.ViewModels
                 if (_encryptionType != value)
                 {
                     _encryptionType = value;
-                    GenerateKeysButtonIsEnable = true;
+                    OnPropertyChanged(nameof(CanGenerateKeys));
                     OnPropertyChanged(nameof(SelectedEncryptionType));
                 }
             }
@@ -57,18 +55,8 @@ namespace Cryptography.App.ViewModels
                 }
             }
         }
-        public bool GenerateKeysButtonIsEnable
-        {
-            get { return _generateKeysButtonIsEnable; }
-            set
-            {
-                if (_generateKeysButtonIsEnable != value)
-                {
-                    _generateKeysButtonIsEnable = value;
-                    OnPropertyChanged(nameof(GenerateKeysButtonIsEnable));
-                }
-            }
-        }
+        public bool CanGenerateKeys => !string.IsNullOrEmpty(SelectedEncryptionType);
+
         public ContentCopyViewModel ContentCopyVM { get; private set; }
         #endregion
 
@@ -79,7 +67,15 @@ namespace Cryptography.App.ViewModels
         #region Methods
         public void GenerateKeys()
         {
-            GeneratedKeys = EncryptionService.CreateSymmetricKey().ToString();
+            if (!CanGenerateKeys) return;
+            if (SelectedEncryptionType == EncryptionType.SymmetricEncryption)
+            {
+                GeneratedKeys = EncryptionService.CreateSymmetricKey().ToString();
+            }
+            if(SelectedEncryptionType == EncryptionType.AsymmetricEncryption)
+            {
+                GeneratedKeys = EncryptionService.CreateAsymmetricKey().ToString();
+            }
         }
         #endregion
     }
