@@ -10,7 +10,8 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MouseMove="WindowMouseMove">
 
     <Window.DataContext>
         <viewModels:MainViewModel/>
@@ -34,15 +35,29 @@
                        Foreground="White"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
-                       FontSize="20"/>
-
+                       FontSize="20"
+                       Background="Transparent"/>
+            
+            <Button Grid.Column="1"
+                    Grid.Row="0"
+                    Width="30"
+                    Height="30"
+                    Margin="0,5,10,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Content="X"
+                    IsCancel="True"
+                    Click="CloseButton_Click"/>
+            
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Keys"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonStyle}"
-                             IsChecked="True"
+                             IsChecked="{Binding IsSelectedKeysVM,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
                              Command="{Binding KeysViewCommand }"/>
 
 
@@ -51,6 +66,9 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonStyle}"
+                             IsChecked="{ Binding IsSelectedEncryptionVM,
+                             UpdateSourceTrigger=PropertyChanged,
+                             Mode=TwoWay}"
                              Command="{Binding EncryptionViewCommand}"/>
             </StackPanel>
 
