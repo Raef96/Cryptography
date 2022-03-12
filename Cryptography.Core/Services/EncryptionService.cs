@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Text;
+using System.Security.Cryptography;
 using Cryptography.Core.Models;
 
 namespace Cryptography.Core.Services
@@ -8,7 +9,7 @@ namespace Cryptography.Core.Services
 
         public static string Encrypt(string plainText, EncryptionKeys encryptionKeys)
         {
-            
+
             if (encryptionKeys.SymmetricKey is not null)
             {
                 return EncryptAES(plainText, encryptionKeys.SymmetricKey);
@@ -119,10 +120,45 @@ namespace Cryptography.Core.Services
                 rsa.PersistKeyInCsp = false; // keys should not be persisted on the computer
             }
         }
+
         public static string EncryptRSA(string plainText, AsymmetricKeyRSA asymmetricKeyRSA)
         {
-            // TODO
+            if (plainText is null)
+                throw new ArgumentNullException(nameof(plainText));
+            if (asymmetricKeyRSA is null || asymmetricKeyRSA.PublicKey is null)
+                throw new ArgumentNullException(nameof(asymmetricKeyRSA));
+
+            try
+            {
+
+                byte[] text = Encoding.UTF8.GetBytes(plainText);
+
+                byte[] publicKey = Encoding.UTF8.GetBytes(asymmetricKeyRSA.PublicKey);
+                byte[] exponent = { 1, 0, 1 };
+
+                byte[] encryptedText;
+
+
+                RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
+
+                RSAParameters RSAKeyInfo = new RSAParameters();
+                RSAKeyInfo.Modulus = publicKey;
+                RSAKeyInfo.Exponent = exponent;
+
+                RSA.ImportParameters(RSAKeyInfo);
+
+
+                encryptedText = RSA.Encrypt(text, false); // Use PKCS#1 padding mode
+
+                return Convert.ToBase64String(encryptedText);
+            }
+            catch { }
+
             return string.Empty;
+        }
+        public static string DcryptRSA(string encryptedText, AsymmetricKeyRSA asymmetricKeyRSA)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
